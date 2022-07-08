@@ -160,4 +160,4 @@ def get_list():
         return jsonify(result="No Predicted Images found!", isData=False)
 
 if __name__ == '__main__':
-    app.run(debug=True, threaded=False)
+    app.run(debug=True, host='0.0.0.0')

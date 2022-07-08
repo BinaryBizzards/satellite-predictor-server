@@ -1,0 +1,4 @@
+/__pycache__
+/resnet_model.pth
+/test-venv
+/train_classes.csv

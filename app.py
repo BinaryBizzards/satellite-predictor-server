@@ -155,9 +155,9 @@ def get_list():
     if database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
         satellite_list = Satellite.query.all()
         result = satellite_schema.dump(satellite_list)
-        return jsonify(result=result, isData=True)
+        return jsonify(result=result),200
     else :
-        return jsonify(result="No Predicted Images found!", isData=False)
+        return jsonify(result="No Predicted Images found!"),404
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

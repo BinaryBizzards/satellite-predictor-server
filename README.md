@@ -4,51 +4,6 @@
 * Language : `Python`
 * Database : `SQLAlchemy` (*satellite_predictor.db*)
 
-## API Documentation :
-
-### __Authentication__
-
-#### (Using Flask Login)
-
-> POST `/signup`
->> REQUEST :
->>> name : String
-
->>> email : String
-
->>> password : String
-
->> RESPONSE :
->>> JSON Message indicating whether User is registered or not.
-
-> POST `/login`
->> REQUEST :
->>> email : String
-
->>> password : String
-
->>> remember : Boolean
-
->> RESPONSE :
->>> JSON Message indicating whether User is logged in or not.
-
-> GET `/logout`
->>__@login_required__
-
->> RESPONSE :
->>> JSON Message indicating whether User is logged out or not.
-
-### Satellite List
-
-> GET `/get_list`
->>__@login_required__
->> Gives the list of all the images which have been predicted by the current User (History)
-
-> POST `/predict`
->>__@login_required__
->> Takes the satellite image as request and gives the predicted results as response.
-
-
 ## Database Tables
 
 ```SQL
@@ -91,3 +46,27 @@ torch==1.11.0
 torchvision==0.12.0
 gunicorn==20.1.0
 ```
+
+
+## API :
+
+### __Authentication__
+
+#### (Using Flask Login)
+
+> POST `/signup` <br /> 
+> Register User
+
+> POST `/login` <br /> 
+> User Login
+
+> GET `/logout` <br /> 
+>__@login_required__  <br />  Sign Out User
+
+### Satellite List
+
+> GET `/get_list` <br /> 
+>__@login_required__ <br /> Gives the list of all the images which have been predicted by the current User (History)
+
+> POST `/predict` <br /> 
+>__@login_required__ <br /> Takes the satellite image as request and gives the predicted results as response.

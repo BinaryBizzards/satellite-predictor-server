@@ -3,7 +3,7 @@
 
 * Language : `Python`
 * Database : `SQLAlchemy` (*satellite_predictor.db*)
-
+-----
 ## Database Tables
 
 ```SQL
@@ -21,13 +21,13 @@ name = Column(String)
 email = Column(String, unique=True)
 password = Column(String)
 ```
-
+-----
 ## Data Training and Prediction Model
 
 * [Training Dataset Link](https://www.kaggle.com/datasets/nikitarom/planets-dataset/code?select=planet)
 
 * [Dataset Model](/resnet_model.pth)
-
+-----
 ## Libraries Used
 ```r
 albumentations==1.1.0
@@ -46,7 +46,7 @@ torch==1.11.0
 torchvision==0.12.0
 gunicorn==20.1.0
 ```
-
+-----
 
 ## API :
 
@@ -62,7 +62,7 @@ gunicorn==20.1.0
 
 > GET `/logout` <br /> 
 >__@login_required__  <br />  Sign Out User
-
+-----
 ### Satellite List
 
 > GET `/get_list` <br /> 
@@ -70,3 +70,4 @@ gunicorn==20.1.0
 
 > POST `/predict` <br /> 
 >__@login_required__ <br /> Takes the satellite image as request and gives the predicted results as response.
+

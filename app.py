@@ -28,7 +28,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
     os.path.join(basedir, 'satellite_predictor.db')
 
 app.config['SECRET_KEY'] = 'Satelitain@6877'
-app.config['SESSION_TYPE'] = 'filesystem'
 
 MODEL_PATH = 'resnet_model.pth'
 db = SQLAlchemy(app)

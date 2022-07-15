@@ -222,8 +222,6 @@ def upload():
             s = s+str(x)+","
         s = s[:-2]
         s = s[1:]
-        img_encode=img_encode[:-1]
-        img_encode=img_encode[2:]
         if database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
             db_seed(str(img_encode),s)
         else :

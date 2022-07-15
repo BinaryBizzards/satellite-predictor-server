@@ -40,8 +40,8 @@ def db_create():
     print('Database Created!')
 
 #insert data
-def db_seed(img_encode,prediction,user_id):
-    satellite = Satellite(img=img_encode,predicted_values=prediction,user_id=user_id)
+def db_seed(img_encode,prediction):
+    satellite = Satellite(img=img_encode,predicted_values=prediction)
     db.session.add(satellite)
     db.session.commit()
     print('Database seeded!')
@@ -51,12 +51,11 @@ class Satellite(db.Model):
     satellite_id = Column(Integer, primary_key=True)
     img = Column(String)
     predicted_values = Column(String)
-    user_id = Column(Integer)
 
 
 class SatelliteSchema(ma.Schema):
     class Meta:
-        fields = ('satellite_id', 'img', 'predicted_values','user_id')
+        fields = ('satellite_id', 'img', 'predicted_values')
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -209,7 +208,7 @@ def profile() :
     return jsonify(name=current_user.name, email=current_user.email)
 
 @app.route('/predict', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def upload():
     if request.method == 'POST':
         # Get the file from post request
@@ -226,20 +225,20 @@ def upload():
         img_encode=img_encode[:-1]
         img_encode=img_encode[2:]
         if database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
-            db_seed(str(img_encode),s,current_user.id)
+            db_seed(str(img_encode),s)
         else :
             db_create()
-            db_seed(str(img_encode),s,current_user.id)
+            db_seed(str(img_encode),s)
         list = s.split(',')
-        return jsonify(prediction=list, user=current_user.id)
+        return jsonify(prediction=list)
     return None
 
 @app.route('/get_list', methods=['GET'])
-@login_required
+# @login_required
 def get_list():
     # get all the data from database
     if database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
-        satellite_list = Satellite.query.filter_by(user_id=current_user.id)
+        satellite_list = Satellite.query.all()
         result = satellite_schema.dump(satellite_list)
         return jsonify(result),200
     else :
